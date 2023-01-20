@@ -9,14 +9,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
   call-workflow1:
-    name: Workflow1
-    uses: ./.github/workflows/workflow1.yaml
+    name: work-flow
+    uses: ./.github/workflows/work-flow.yaml
   call-workflow2:
     if: ${{ always() }} #This will make your workflow2 executed even if workflow1 fails, remove this, if you want to run this only on success of workflow1
-    needs: call-workflow1
-    uses: ./.github/workflows/workflow2.yaml
+    needs: call-work-flow2
+    uses: ./.github/workflows/work-flow2.yaml
   print:
     needs: [call-workflow1]
     runs-on: ubuntu-latest
     steps:
-       - run: echo "${{ needs.call-workflow1 }}"
+       - run: echo "${{ needs.call-workflow }}"
